@@ -175,6 +175,10 @@ angular.module("leaflet-directive").directive('layers', function ($log, $q, leaf
                             leafletLayers.overlays[newName].setData(newOverlayLayers[newName].data);
                             leafletLayers.overlays[newName].update();
                         }
+
+                        if (newOverlayLayers[newName].visible && map._loaded && newOverlayLayers[newName].data && newOverlayLayers[newName].type === "heat") {
+                            leafletLayers.overlays[newName].setLatLngs(newOverlayLayers[newName].data);
+                        }
                     }
 
                     // Only add the layers switch selector control if we have more than one baselayer + overlay
